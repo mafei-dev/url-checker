@@ -11,9 +11,11 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 @RestController
 public class TestController implements ApplicationListener<WebServerInitializedEvent> {
+    private static final double val = new Random().nextDouble();
     int aPort;
     @Autowired
     private HttpServletRequest request;
@@ -22,6 +24,7 @@ public class TestController implements ApplicationListener<WebServerInitializedE
     public Object index() throws UnknownHostException {
         Map<String, Object> data = new HashMap<>();
         data.put("aPort", aPort);
+        data.put("val", val);
         data.put("getRequestURI", request.getRequestURI());
         data.put("getRequestURL", request.getRequestURL());
         data.put("getPathInfo", request.getPathInfo());
